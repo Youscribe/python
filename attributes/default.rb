@@ -27,9 +27,9 @@ else
 end
 
 case platform
-when "redhat","centos","scientific","fedora","suse","amazon"
+when "redhat","centos","scientific","fedora","suse","amazon","debian"
   set['python']['pip']['prefix_dir']  = '/usr'
-when "debian","ubuntu"
+when "ubuntu"
   set['python']['pip']['prefix_dir']  = '/usr/local'
 else
   set['python']['pip']['prefix_dir']  = '/usr/local'
