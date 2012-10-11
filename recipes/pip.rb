@@ -28,14 +28,15 @@ pip_bindir    = "#{node['python']['pip']['prefix_dir']}/bin"
 remote_file "#{Chef::Config[:file_cache_path]}/distribute_setup.py" do
   source "http://python-distribute.org/distribute_setup.py"
   mode "0644"
-  not_if { ::File.exists?("#{pip_bindir}/pip") }
+  notifies :run, "bash[install-pip]", :immediately
+  not_if "which pip"
 end
 
 bash "install-pip" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOF
   #{python_bindir}/python distribute_setup.py
-  #{pip_bindir}/easy_install pip
+  easy_install pip
   EOF
-  not_if { ::File.exists?("#{pip_bindir}/pip") }
+  action :nothing
 end
