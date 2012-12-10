@@ -28,11 +28,11 @@ end
 
 case platform
 when "redhat","centos","scientific","fedora","suse","amazon","debian"
-  set['python']['pip']['prefix_dir']  = '/usr'
+  default['python']['pip']['prefix_dir']  = '/usr'
 when "ubuntu"
-  set['python']['pip']['prefix_dir']  = '/usr/local'
+  default['python']['pip']['prefix_dir']  = '/usr/local'
 else
-  set['python']['pip']['prefix_dir']  = '/usr/local'
+  default['python']['pip']['prefix_dir']  = '/usr/local'
 end
 
 default['python']['url'] = 'http://www.python.org/ftp/python'
